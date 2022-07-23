@@ -31,6 +31,7 @@ struct ContentView: View {
                                     .foregroundColor(.white)
                             })
                             .foregroundColor(.white)
+                            .disableAutocorrection(true)
                     }
                     .padding(10)
                     .background(
@@ -62,7 +63,7 @@ struct ContentView: View {
                         .padding(0)
                         
                     } else {
-                        Text("Results of: \(searchModel.searchInput)")
+                        Text(searchModel.resultText)
                             .foregroundColor(.primary)
                             .font(.system(size: 22, weight: .heavy))
                             .padding(.horizontal, 15)

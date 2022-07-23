@@ -12,6 +12,8 @@ class SearchViewModel: ObservableObject {
     
     @Published var searchInput: String = ""
     
+    @Published var resultText: String = ""
+    
     var searchCancellable: AnyCancellable? = nil
     
     init() {
@@ -23,11 +25,11 @@ class SearchViewModel: ObservableObject {
                 if str == "" {
                     
                     self.characters.removeAll()
+                    self.resultText = ""
                     
                 } else {
-                    
+                    self.characters.removeAll()
                     self.searchCharacters(name: str)
-                    
                 }
                 
             })
@@ -38,6 +40,11 @@ class SearchViewModel: ObservableObject {
     @Published var characters = [Result]() {
         didSet {
             didChange.send(self)
+            
+            
+            self.resultText = "Results of: \(self.searchInput)"
+            
+            
         }
     }
     
@@ -47,6 +54,7 @@ class SearchViewModel: ObservableObject {
             self.characters = $0.results
             
         }
+        
     }
     
 }
